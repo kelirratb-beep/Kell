@@ -13,30 +13,30 @@
         }
 
         body {
-            background-color: #0d1117;
-            color: #f0f6fc;
+            background-color: #f6f8fa;
+            color: #1f2328;
             padding: 12px;
-            padding-bottom: 30px;
+            padding-bottom: 40px;
         }
 
         header {
             text-align: center;
             margin-bottom: 16px;
             padding-bottom: 8px;
-            border-bottom: 1px solid #30363d;
+            border-bottom: 1px solid #d0d7de;
         }
 
         header h1 {
-            font-size: 1.25rem;
-            color: #58a6ff;
+            font-size: 1.35rem;
+            color: #0969da;
         }
 
         header p {
-            font-size: 0.8rem;
-            color: #8b949e;
+            font-size: 0.85rem;
+            color: #636c76;
         }
 
-        /* Navigasi Tab Mobile */
+        /* Navigasi Tab Mobile Dibuat Lebih Besar */
         .tab-container {
             display: flex;
             gap: 6px;
@@ -45,21 +45,23 @@
 
         .tab-btn {
             flex: 1;
-            padding: 10px 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid #30363d;
-            background-color: #161b22;
-            color: #8b949e;
-            border-radius: 6px;
+            padding: 14px 4px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: 2px solid #d0d7de;
+            background-color: #ffffff;
+            color: #57606a;
+            border-radius: 8px;
             cursor: pointer;
             text-align: center;
+            transition: all 0.2s ease;
         }
 
         .tab-btn.active {
-            background-color: #1f6feb;
+            background-color: #0969da;
             color: #ffffff;
-            border-color: #388bfd;
+            border-color: #0969da;
+            box-shadow: 0 2px 6px rgba(9, 105, 218, 0.3);
         }
 
         /* Main App Grid Layout */
@@ -78,268 +80,430 @@
                 display: none;
             }
             .step-panel {
-                display: block !important;
+                display: flex !important;
             }
         }
 
         /* Panel Card */
         .panel {
-            background-color: #161b22;
-            border: 1px solid #30363d;
+            background-color: #ffffff;
+            border: 1px solid #d0d7de;
             border-radius: 12px;
-            padding: 14px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
+            box-shadow: 0 2px 6px rgba(31,35,40,0.08);
         }
 
         .panel-header {
-            background-color: #1f6feb;
+            background-color: #0969da;
             color: #ffffff;
-            padding: 10px;
+            padding: 12px;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 0.95rem;
+            font-size: 1rem;
             text-align: center;
         }
 
-        /* Scanner Box */
+        /* Scanner Box Dibuat Besar & Empuk */
         .scanner-box {
-            border: 2px dashed #30363d;
-            background-color: #0d1117;
-            border-radius: 8px;
-            padding: 24px;
+            border: 2px dashed #0969da;
+            background-color: #f0f7ff;
+            border-radius: 10px;
+            padding: 20px;
             text-align: center;
             cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .scanner-box:active {
+            background-color: #ddf4ff;
         }
 
         .scanner-box h3 {
-            font-size: 0.9rem;
-            color: #58a6ff;
+            font-size: 0.95rem;
+            color: #0969da;
             margin-bottom: 4px;
         }
 
         .scanner-box p {
-            font-size: 0.75rem;
-            color: #8b949e;
+            font-size: 0.8rem;
+            color: #57606a;
         }
 
         /* Input Custom */
         .input-search {
             width: 100%;
-            padding: 10px;
-            background-color: #0d1117;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            color: #fff;
-            font-size: 0.85rem;
+            padding: 12px;
+            background-color: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 8px;
+            color: #1f2328;
+            font-size: 0.9rem;
             text-align: center;
         }
 
-        /* Patient Cards */
+        /* Patient Cards & Scroll Area */
+        .patient-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 220px;
+            overflow-y: auto;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 8px;
+            background-color: #fafbfc;
+        }
+
         .patient-card {
             border-radius: 8px;
-            padding: 10px 12px;
+            padding: 12px;
             cursor: pointer;
-            margin-bottom: 8px;
             border: 2px solid transparent;
+            transition: all 0.2s ease;
         }
 
         .patient-card.red {
-            background-color: #2d1517;
-            border-color: #f85149;
+            background-color: #ffebe9;
+            border-color: #ff8182;
         }
 
         .patient-card.yellow {
-            background-color: #272115;
-            border-color: #d29922;
+            background-color: #fff8c5;
+            border-color: #d4a72c;
+        }
+
+        .patient-card.green {
+            background-color: #dafbe1;
+            border-color: #4ac26b;
         }
 
         .patient-card.selected {
-            box-shadow: 0 0 0 2px #58a6ff;
+            box-shadow: 0 0 0 3px #0969da;
         }
 
         .patient-name {
             font-weight: bold;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            color: #1f2328;
         }
 
         .patient-info {
-            font-size: 0.75rem;
-            color: #8b949e;
+            font-size: 0.8rem;
+            color: #57606a;
             margin-top: 2px;
         }
 
         /* Banner Pasien Aktif */
         .active-patient-banner {
-            background-color: #272115;
-            border: 1px solid #d29922;
+            background-color: #fff8c5;
+            border: 1px solid #d4a72c;
             border-radius: 8px;
-            padding: 10px;
+            padding: 12px;
             text-align: center;
         }
 
         .banner-title {
             font-weight: bold;
-            font-size: 0.9rem;
-            color: #f0f6fc;
+            font-size: 0.95rem;
+            color: #1f2328;
         }
 
         .banner-subtitle {
-            font-size: 0.75rem;
-            color: #f85149;
+            font-size: 0.8rem;
+            color: #cf222e;
             margin-top: 2px;
         }
 
-        /* Grid Pilihan Tekanan Darah */
-        .grid-4 {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
+        /* Menghilangkan Panah Bawaan Browser pada Input Number */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
         }
 
-        .btn-select {
-            padding: 8px 0;
-            background-color: #0d1117;
-            border: 1px solid #30363d;
-            color: #f0f6fc;
-            border-radius: 6px;
+        /* Container Input Tekanan Darah */
+        .bp-input-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 10px;
+            padding: 12px 14px;
+        }
+
+        .bp-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .bp-box label {
             font-size: 0.8rem;
+            color: #57606a;
+            font-weight: 600;
+        }
+
+        .bp-box input {
+            width: 100%;
+            height: 48px;
+            border: 1px solid #d0d7de;
+            background-color: #ffffff;
+            border-radius: 8px;
+            font-size: 1.1rem;
             font-weight: bold;
-            cursor: pointer;
             text-align: center;
+            color: #1f2328;
         }
 
-        .btn-select.active {
-            background-color: #1f6feb;
-            border-color: #58a6ff;
-            color: #fff;
+        .bp-box input:focus {
+            outline: none;
+            border-color: #0969da;
+            box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.2);
         }
 
-        /* Field Input Vital Sign */
+        /* Grid Vital Signs */
         .vital-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            gap: 10px;
         }
 
         .vital-field {
-            background-color: #0d1117;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            padding: 8px;
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 8px;
+            padding: 10px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
         .vital-field label {
-            font-size: 0.75rem;
-            color: #8b949e;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #57606a;
         }
 
         .vital-field input {
-            width: 45px;
-            background: transparent;
-            border: none;
-            color: #fff;
-            font-weight: bold;
-            text-align: right;
-            font-size: 0.85rem;
-        }
-
-        /* Alert Warning */
-        .alert-box {
-            background-color: #2d1517;
-            border: 1px solid #f85149;
-            color: #ff7b72;
+            width: 65px;
+            height: 42px;
+            background: #ffffff;
+            border: 1px solid #d0d7de;
             border-radius: 6px;
-            padding: 8px;
-            font-size: 0.75rem;
+            padding: 4px;
+            color: #1f2328;
+            font-weight: bold;
             text-align: center;
+            font-size: 0.95rem;
         }
 
-        /* Main Buttons */
+        .vital-field input:focus {
+            outline: none;
+            border-color: #0969da;
+        }
+
+        /* Alert Warning Dinamis */
+        .alert-box {
+            background-color: #ffebe9;
+            border: 1px solid #ff8182;
+            color: #cf222e;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 0.8rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .alert-box.success-alert {
+            background-color: #dafbe1;
+            border: 1px solid #4ac26b;
+            color: #1a7f37;
+        }
+
+        /* ======================================================== */
+        /* TOMBOL-TOMBOL UTAMA DIBUAT BESAR UNTUK LAYAR HP (UI/UX)  */
+        /* ======================================================== */
         .btn-green {
             width: 100%;
+            min-height: 52px;
+            padding: 14px;
+            background-color: #1f883d;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: background-color 0.2s;
+        }
+
+        .btn-green:active {
+            background-color: #1a7f37;
+        }
+
+        .btn-red {
+            min-height: 48px;
             padding: 12px;
-            background-color: #238636;
+            background-color: #cf222e;
             color: white;
             border: none;
             border-radius: 8px;
             font-weight: bold;
             font-size: 0.9rem;
             cursor: pointer;
-            text-align: center;
-        }
-
-        .btn-red {
-            padding: 10px;
-            background-color: #da3633;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            cursor: pointer;
             flex: 1;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .btn-gray {
-            padding: 10px;
-            background-color: #21262d;
-            border: 1px solid #30363d;
-            color: #f0f6fc;
-            border-radius: 6px;
+            min-height: 48px;
+            padding: 12px;
+            background-color: #ffffff;
+            border: 2px solid #d0d7de;
+            color: #1f2328;
+            border-radius: 8px;
             font-weight: bold;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             cursor: pointer;
             flex: 1;
+        }
+
+        .btn-orange {
+            min-height: 48px;
+            padding: 12px;
+            background-color: #d4a72c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         /* Result Panel Details */
         .result-box {
-            background-color: #0d1117;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 12px;
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 10px;
+            padding: 14px;
             display: flex;
             flex-direction: column;
-            gap: 6px;
-            font-size: 0.8rem;
+            gap: 10px;
+            font-size: 0.88rem;
         }
 
         .result-row {
             display: flex;
             justify-content: space-between;
-            color: #8b949e;
+            align-items: center;
+            padding-bottom: 6px;
+            border-bottom: 1px dashed #d0d7de;
         }
 
-        .result-row span.val {
-            color: #f0f6fc;
-            font-weight: 500;
+        .result-row:last-child {
+            border-bottom: none;
         }
 
-        .check-icon {
-            color: #3fb950;
+        .val-badge {
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+
+        .val-normal {
+            color: #1a7f37;
+            background-color: #dafbe1;
+        }
+
+        .val-abnormal {
+            color: #cf222e;
+            background-color: #ffebe9;
         }
 
         .score-box {
             margin-top: 4px;
-            padding-top: 6px;
-            border-top: 1px solid #30363d;
+            padding-top: 8px;
+            border-top: 1px solid #d0d7de;
             font-weight: bold;
-            color: #f0f6fc;
+            color: #1f2328;
+            display: flex;
+            justify-content: space-between;
         }
 
         .success-banner {
-            background-color: #121d17;
-            border: 1px solid #238636;
-            color: #3fb950;
-            border-radius: 6px;
-            padding: 8px;
-            font-size: 0.75rem;
+            background-color: #dafbe1;
+            border: 1px solid #4ac26b;
+            color: #1a7f37;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 0.8rem;
             text-align: center;
+            font-weight: 600;
+        }
+
+        /* Modal Overlay untuk Koreksi Data */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 16px;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .modal-content h3 {
+            font-size: 1rem;
+            color: #cf222e;
+        }
+
+        .modal-content textarea {
+            width: 100%;
+            height: 70px;
+            border: 1px solid #d0d7de;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 0.9rem;
+            resize: none;
+        }
+
+        .audit-log {
+            font-size: 0.75rem;
+            color: #8a6400;
+            background-color: #fff8c5;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #d4a72c;
+            margin-top: 4px;
         }
 
         .hidden {
@@ -367,27 +531,49 @@
             <div class="panel-header">1. Identifikasi Pasien</div>
 
             <div class="scanner-box" onclick="simulasiScan()">
-                <h3>SCAN GELANG PASIEN</h3>
+                <h3>📷 SCAN GELANG PASIEN</h3>
                 <p>Arahkan kamera / pemindai barcode</p>
             </div>
 
-            <input type="text" class="input-search" placeholder="Cari manual (nama / No. RM)...">
+            <input type="text" id="search-patient" class="input-search" placeholder="🔍 Cari nama (Aulia, Amel, Gloo, dll)..." oninput="filterPatients()">
 
             <div>
-                <p style="font-size: 0.75rem; color: #8b949e; margin-bottom: 6px;">Pasien IGD saya (urut triase)</p>
+                <p style="font-size: 0.8rem; color: #57606a; margin-bottom: 6px; font-weight: 600;">Pasien IGD (Pilih / Gulir kebawah):</p>
                 
-                <div class="patient-card red selected" id="patient-A" onclick="selectPatient('Tn. A', '52 th', '00123', 'Penisilin', 'Merah')">
-                    <div class="patient-name">• Tn. A (52 th) - Merah</div>
-                    <div class="patient-info">RM 00123 - Alergi: Penisilin</div>
-                </div>
+                <div class="patient-list" id="patient-list-container">
+                    <div class="patient-card red selected" id="patient-Aulia" onclick="selectPatient('Aulia', '21 th', 'RM 00121', 'Penisilin', 'Merah')">
+                        <div class="patient-name">• Aulia (21 th) - Merah</div>
+                        <div class="patient-info">RM 00121 - Alergi: Penisilin</div>
+                    </div>
 
-                <div class="patient-card yellow" id="patient-B" onclick="selectPatient('Ny. B', '34 th', '00131', 'Tidak ada', 'Kuning')">
-                    <div class="patient-name">• Ny. B (34 th) - Kuning</div>
-                    <div class="patient-info">RM 00131</div>
+                    <div class="patient-card red" id="patient-Amel" onclick="selectPatient('Amel', '20 th', 'RM 00122', 'Tidak ada', 'Merah')">
+                        <div class="patient-name">• Amel (20 th) - Merah</div>
+                        <div class="patient-info">RM 00122 - Alergi: Tidak ada</div>
+                    </div>
+
+                    <div class="patient-card yellow" id="patient-Gloo" onclick="selectPatient('Gloo', '22 th', 'RM 00123', 'Seftriakson', 'Kuning')">
+                        <div class="patient-name">• Gloo (22 th) - Kuning</div>
+                        <div class="patient-info">RM 00123 - Alergi: Seftriakson</div>
+                    </div>
+
+                    <div class="patient-card yellow" id="patient-Mili" onclick="selectPatient('Mili', '19 th', 'RM 00124', 'Tidak ada', 'Kuning')">
+                        <div class="patient-name">• Mili (19 th) - Kuning</div>
+                        <div class="patient-info">RM 00124 - Alergi: Tidak ada</div>
+                    </div>
+
+                    <div class="patient-card green" id="patient-Nina" onclick="selectPatient('Nina', '20 th', 'RM 00125', 'Povidone Iodine', 'Hijau')">
+                        <div class="patient-name">• Nina (20 th) - Hijau</div>
+                        <div class="patient-info">RM 00125 - Alergi: Povidone Iodine</div>
+                    </div>
+
+                    <div class="patient-card green" id="patient-Ekell" onclick="selectPatient('Ekell', '21 th', 'RM 00126', 'Tidak ada', 'Hijau')">
+                        <div class="patient-name">• Ekell (21 th) - Hijau</div>
+                        <div class="patient-info">RM 00126 - Alergi: Tidak ada</div>
+                    </div>
                 </div>
             </div>
 
-            <button class="btn-green" style="margin-top: auto;" onclick="switchTab(2)">Lanjut Input Vital Signs &rarr;</button>
+            <button class="btn-green" style="margin-top: 6px;" onclick="switchTab(2)">Lanjut Input Vital Signs &rarr;</button>
         </div>
 
         <!-- LAYAR 2: Input Vital Signs -->
@@ -395,126 +581,150 @@
             <div class="panel-header">2. Input Vital Signs</div>
 
             <div class="active-patient-banner">
-                <div class="banner-title" id="active-patient-text">Tn. A • 52 th • RM 00123</div>
+                <div class="banner-title" id="active-patient-text">Aulia • 21 th • RM 00121</div>
                 <div class="banner-subtitle" id="active-patient-sub">ALERGI: Penisilin • Triase Merah (selalu tampil)</div>
             </div>
 
-            <p style="font-size: 0.75rem; color: #8b949e;">Tekanan Darah (mmHg)</p>
+            <p style="font-size: 0.85rem; font-weight: bold; color: #1f2328;">Tekanan Darah (mmHg)</p>
             
-            <p style="font-size: 0.7rem; color: #8b949e;">Sistolik:</p>
-            <div class="grid-4">
-                <div class="btn-select" onclick="setSystolic(100, this)">100</div>
-                <div class="btn-select" onclick="setSystolic(110, this)">110</div>
-                <div class="btn-select active" onclick="setSystolic(120, this)">120</div>
-                <div class="btn-select" onclick="setSystolic(130, this)">130</div>
+            <div class="bp-input-container">
+                <div class="bp-box">
+                    <label for="input-sistolik">Sistolik</label>
+                    <input type="number" id="input-sistolik" value="120" placeholder="120" oninput="calculateNEWS()">
+                </div>
+
+                <span style="font-weight: bold; font-size: 1.6rem; color: #57606a; margin-top: 18px;">/</span>
+
+                <div class="bp-box">
+                    <label for="input-diastolik">Diastolik</label>
+                    <input type="number" id="input-diastolik" value="80" placeholder="80" oninput="calculateNEWS()">
+                </div>
             </div>
 
-            <p style="font-size: 0.7rem; color: #8b949e;">Diastolik:</p>
-            <div class="grid-4">
-                <div class="btn-select" onclick="setDiastolic(70, this)">70</div>
-                <div class="btn-select active" onclick="setDiastolic(80, this)">80</div>
-                <div class="btn-select" onclick="setDiastolic(90, this)">90</div>
-                <div class="btn-select" onclick="setDiastolic(100, this)">100</div>
-            </div>
-
-            <p style="font-size: 0.7rem; color: #8b949e;">Terakhir: 118/76 (14.05) — Stepper ± untuk koreksi</p>
+            <p style="font-size: 0.75rem; color: #57606a;">Terakhir: 118/76 (14.05)</p>
 
             <div class="vital-grid">
                 <div class="vital-field">
-                    <label>Nadi</label>
-                    <input type="number" id="input-nadi" value="88" onchange="calculateNEWS()">
+                    <label for="input-nadi">Nadi (x/m)</label>
+                    <input type="number" id="input-nadi" value="88" oninput="calculateNEWS()">
                 </div>
                 <div class="vital-field">
-                    <label>RR</label>
-                    <input type="number" id="input-rr" value="20" onchange="calculateNEWS()">
+                    <label for="input-rr">RR (x/m)</label>
+                    <input type="number" id="input-rr" value="20" oninput="calculateNEWS()">
                 </div>
                 <div class="vital-field">
-                    <label>SpO₂</label>
-                    <input type="number" id="input-spo2" value="96" onchange="calculateNEWS()">
+                    <label for="input-spo2">SpO₂ (%)</label>
+                    <input type="number" id="input-spo2" value="96" oninput="calculateNEWS()">
                 </div>
                 <div class="vital-field">
-                    <label>Suhu</label>
-                    <input type="number" id="input-suhu" step="0.1" value="37.1" onchange="calculateNEWS()">
+                    <label for="input-suhu">Suhu (°C)</label>
+                    <input type="number" id="input-suhu" step="0.1" value="37.1" oninput="calculateNEWS()">
                 </div>
             </div>
 
-            <div class="alert-box">
-                ⚠️ Klinis: SpO₂ &lt; 94% — perlu perhatian (data tetap disimpan)
+            <!-- Alert Box Dinamis -->
+            <div id="clinical-alert" class="alert-box hidden">
+                <span id="alert-msg">Klinis: Perlu perhatian!</span>
             </div>
 
-            <button class="btn-green" onclick="saveAndProceed()">SIMPAN &amp; LANJUT</button>
+            <button class="btn-green" onclick="saveAndProceed()">SIMPAN &amp; LANJUT &rarr;</button>
         </div>
 
-        <!-- LAYAR 3: Konfirmasi Hasil -->
+        <!-- LAYAR 3: Konfirmasi Hasil & Evaluasi Terhubung -->
         <div class="panel step-panel hidden" id="panel3">
             <div class="panel-header">3. Konfirmasi Hasil</div>
 
             <div class="active-patient-banner">
-                <div class="banner-title" id="confirm-patient-text">Tn. A • 52 th • RM 00123</div>
-                <div style="font-size: 0.75rem; color: #8b949e; margin-top: 2px;">Pastikan data ini untuk pasien yang benar</div>
+                <div class="banner-title" id="confirm-patient-text">Aulia • 21 th • RM 00121</div>
+                <div style="font-size: 0.8rem; color: #57606a; margin-top: 2px;">Pastikan data ini untuk pasien yang benar</div>
             </div>
 
             <div class="result-box">
                 <div class="result-row">
-                    <span>TD: <strong id="res-td" style="color: #fff;">120/80</strong> <span class="check-icon">✓ Normal</span></span>
+                    <span>Tekanan Darah: <strong id="res-td-val" style="color: #1f2328;">120/80 mmHg</strong></span>
+                    <span id="badge-td" class="val-badge val-normal">✓ Normal</span>
                 </div>
                 <div class="result-row">
-                    <span>Nadi: <span class="val" id="res-nadi">88</span> <span class="check-icon">✓</span></span>
-                    <span>RR: <span class="val" id="res-rr">20</span> <span class="check-icon">✓</span></span>
+                    <span>Nadi: <strong id="res-nadi-val">88 x/mnt</strong></span>
+                    <span id="badge-nadi" class="val-badge val-normal">✓ Normal</span>
                 </div>
                 <div class="result-row">
-                    <span>SpO₂: <span class="val" id="res-spo2">96</span> — ke atas</span>
-                    <span>Suhu: <span class="val" id="res-suhu">37.1</span> <span class="check-icon">✓</span></span>
+                    <span>Laju Napas (RR): <strong id="res-rr-val">20 x/mnt</strong></span>
+                    <span id="badge-rr" class="val-badge val-normal">✓ Normal</span>
                 </div>
                 <div class="result-row">
-                    <span>GCS: <span class="val">15</span> <span class="check-icon">✓</span></span>
+                    <span>Saturasi Oksigen (SpO₂): <strong id="res-spo2-val">96 %</strong></span>
+                    <span id="badge-spo2" class="val-badge val-normal">✓ Normal</span>
+                </div>
+                <div class="result-row">
+                    <span>Suhu Tubuh: <strong id="res-suhu-val">37.1 °C</strong></span>
+                    <span id="badge-suhu" class="val-badge val-normal">✓ Normal</span>
                 </div>
                 <div class="score-box">
-                    Skor NEWS: <span id="res-news" style="color: #3fb950;">1 (rendah)</span>
+                    <span>Skor NEWS Total:</span>
+                    <span id="res-news" style="color: #1f883d;">0 (Normal / Aman)</span>
+                </div>
+                <div id="correction-log" class="audit-log hidden">
+                    📌 <b>Dikoreksi:</b> <span id="log-text">-</span>
                 </div>
             </div>
 
-            <div style="display: flex; gap: 8px;">
-                <button class="btn-gray" onclick="switchTab(2)">Edit</button>
-                <button class="btn-red" onclick="eskalasiDPJP()">Eskalasi DPJP</button>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn-gray" onclick="switchTab(2)">✏️ Edit Data</button>
+                <button class="btn-red" onclick="eskalasiDPJP()">🚨 Eskalasi DPJP</button>
             </div>
 
-            <div class="success-banner">
+            <button class="btn-orange" id="btn-koreksi" onclick="openCorrectionModal()">⚠️ Koreksi Data Terkirim (Salah Input)</button>
+
+            <div class="success-banner" id="status-banner">
                 ✓ Tersimpan · Tampil di Handover
             </div>
 
-            <button class="btn-green" onclick="selesaiProcess()">KONFIRMASI &amp; SELESAI</button>
+            <button class="btn-green" id="btn-final" onclick="selesaiProcess()">✓ KONFIRMASI &amp; SELESAI</button>
+        </div>
+    </div>
+
+    <!-- Modal Popup Form Koreksi Data Terkirim -->
+    <div id="modal-koreksi" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>⚠️ Koreksi Data Telanjur Dikirim</h3>
+            <p style="font-size: 0.8rem; color: #57606a;">Koreksi akan dicatat pada Audit Log Rekam Medis Pasien.</p>
+
+            <label style="font-size: 0.85rem; font-weight: bold;">Alasan Koreksi / Pembatalan:</label>
+            <textarea id="reason-text" placeholder="Contoh: Salah ketik TD Sistolik (seharusnya 110)"></textarea>
+
+            <div style="display: flex; gap: 10px; margin-top: 8px;">
+                <button class="btn-gray" onclick="closeCorrectionModal()">Batal</button>
+                <button class="btn-green" style="flex: 1.5; min-height: 48px;" onclick="submitCorrection()">Simpan Koreksi</button>
+            </div>
         </div>
     </div>
 
     <script>
-        let selectedSystolic = 120;
-        let selectedDiastolic = 80;
+        let currentPatientName = 'Aulia';
 
         function switchTab(tabNumber) {
-            // Sembunyikan semua panel pada tampilan mobile
             if (window.innerWidth < 900) {
                 document.querySelectorAll('.step-panel').forEach(panel => panel.classList.add('hidden'));
                 document.getElementById('panel' + tabNumber).classList.remove('hidden');
             }
 
-            // Update status tombol tab
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById('tab' + tabNumber).classList.add('active');
 
-            // Scroll ke atas halaman
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function selectPatient(name, age, rm, alergi, triase) {
+            currentPatientName = name;
+            
             document.querySelectorAll('.patient-card').forEach(c => c.classList.remove('selected'));
-            if (name.includes('Tn. A')) {
-                document.getElementById('patient-A').classList.add('selected');
-            } else {
-                document.getElementById('patient-B').classList.add('selected');
+            const selectedCard = document.getElementById('patient-' + name);
+            if (selectedCard) {
+                selectedCard.classList.add('selected');
             }
 
-            const headerText = `${name} • ${age} • RM ${rm}`;
+            const headerText = `${name} • ${age} • ${rm}`;
             const subText = `ALERGI: ${alergi} • Triase ${triase} (selalu tampil)`;
 
             document.getElementById('active-patient-text').innerText = headerText;
@@ -522,50 +732,116 @@
             document.getElementById('confirm-patient-text').innerText = headerText;
         }
 
-        function setSystolic(val, el) {
-            selectedSystolic = val;
-            el.parentElement.querySelectorAll('.btn-select').forEach(b => b.classList.remove('active'));
-            el.classList.add('active');
-            updateTDDisplay();
+        function filterPatients() {
+            const query = document.getElementById('search-patient').value.toLowerCase();
+            const cards = document.querySelectorAll('.patient-card');
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         }
 
-        function setDiastolic(val, el) {
-            selectedDiastolic = val;
-            el.parentElement.querySelectorAll('.btn-select').forEach(b => b.classList.remove('active'));
-            el.classList.add('active');
-            updateTDDisplay();
-        }
-
-        function updateTDDisplay() {
-            document.getElementById('res-td').innerText = `${selectedSystolic}/${selectedDiastolic}`;
+        function updateBadge(elementId, isNormal, normalMsg, abnormalMsg) {
+            const el = document.getElementById(elementId);
+            if (isNormal) {
+                el.innerText = normalMsg;
+                el.className = 'val-badge val-normal';
+            } else {
+                el.innerText = abnormalMsg;
+                el.className = 'val-badge val-abnormal';
+            }
         }
 
         function calculateNEWS() {
-            const nadi = parseInt(document.getElementById('input-nadi').value) || 0;
-            const rr = parseInt(document.getElementById('input-rr').value) || 0;
-            const spo2 = parseInt(document.getElementById('input-spo2').value) || 0;
-            const suhu = parseFloat(document.getElementById('input-suhu').value) || 0;
+            const sistolik = parseInt(document.getElementById('input-sistolik').value) || 120;
+            const diastolik = parseInt(document.getElementById('input-diastolik').value) || 80;
+            const nadi = parseInt(document.getElementById('input-nadi').value) || 88;
+            const rr = parseInt(document.getElementById('input-rr').value) || 20;
+            const spo2 = parseInt(document.getElementById('input-spo2').value) || 96;
+            const suhu = parseFloat(document.getElementById('input-suhu').value) || 37.1;
 
-            document.getElementById('res-nadi').innerText = nadi;
-            document.getElementById('res-rr').innerText = rr;
-            document.getElementById('res-spo2').innerText = spo2;
-            document.getElementById('res-suhu').innerText = suhu;
+            document.getElementById('res-td-val').innerText = `${sistolik}/${diastolik} mmHg`;
+            document.getElementById('res-nadi-val').innerText = `${nadi} x/mnt`;
+            document.getElementById('res-rr-val').innerText = `${rr} x/mnt`;
+            document.getElementById('res-spo2-val').innerText = `${spo2} %`;
+            document.getElementById('res-suhu-val').innerText = `${suhu} °C`;
 
             let score = 0;
-            if (spo2 < 94) score += 2;
-            if (rr > 22 || rr < 12) score += 2;
-            if (nadi > 100 || nadi < 50) score += 1;
+            let warnings = [];
+
+            const tdNormal = (sistolik >= 90 && sistolik <= 139) && (diastolik >= 60 && diastolik <= 89);
+            if (!tdNormal) {
+                score += (sistolik >= 140 || sistolik < 90) ? 1 : 0;
+                warnings.push(`Tekanan Darah (${sistolik}/${diastolik} mmHg)`);
+                updateBadge('badge-td', false, '✓ Normal', sistolik >= 140 ? '⚠️ Tinggi' : '⚠️ Rendah');
+            } else {
+                updateBadge('badge-td', true, '✓ Normal', '');
+            }
+
+            const nadiNormal = (nadi >= 60 && nadi <= 100);
+            if (!nadiNormal) {
+                score += 1;
+                warnings.push(`Nadi (${nadi}x/m)`);
+                updateBadge('badge-nadi', false, '✓ Normal', nadi > 100 ? '⚠️ Takikardia' : '⚠️ Bradikardia');
+            } else {
+                updateBadge('badge-nadi', true, '✓ Normal', '');
+            }
+
+            const rrNormal = (rr >= 12 && rr <= 20);
+            if (!rrNormal) {
+                score += 2;
+                warnings.push(`Napas RR (${rr}x/m)`);
+                updateBadge('badge-rr', false, '✓ Normal', rr > 20 ? '⚠️ Takipnea' : '⚠️ Bradipnea');
+            } else {
+                updateBadge('badge-rr', true, '✓ Normal', '');
+            }
+
+            const spo2Normal = (spo2 >= 95);
+            if (!spo2Normal) {
+                score += 2;
+                warnings.push(`SpO₂ (${spo2}%)`);
+                updateBadge('badge-spo2', false, '✓ Normal', '⚠️ Hipoksia');
+            } else {
+                updateBadge('badge-spo2', true, '✓ Normal', '');
+            }
+
+            const suhuNormal = (suhu >= 36.5 && suhu <= 37.5);
+            if (!suhuNormal) {
+                score += 1;
+                warnings.push(`Suhu (${suhu}°C)`);
+                updateBadge('badge-suhu', false, '✓ Normal', suhu > 37.5 ? '⚠️ Demam' : '⚠️ Hipotermia');
+            } else {
+                updateBadge('badge-suhu', true, '✓ Normal', '');
+            }
+
+            const alertBox = document.getElementById('clinical-alert');
+            const alertMsg = document.getElementById('alert-msg');
+
+            if (warnings.length > 0) {
+                alertMsg.innerText = `⚠️ Klinis Tidak Normal: ${warnings.join(', ')} — Perlu perhatian khusus!`;
+                alertBox.className = 'alert-box';
+                alertBox.classList.remove('hidden');
+            } else {
+                alertMsg.innerText = `✅ Semua Vital Sign Pasien Dalam Batas Normal (Aman)`;
+                alertBox.className = 'alert-box success-alert';
+                alertBox.classList.remove('hidden');
+            }
 
             const resNews = document.getElementById('res-news');
-            if (score <= 1) {
-                resNews.innerText = `${score} (rendah)`;
-                resNews.style.color = '#3fb950';
+            if (score === 0) {
+                resNews.innerText = `${score} (Normal / Aman)`;
+                resNews.style.color = '#1f883d';
             } else if (score <= 4) {
-                resNews.innerText = `${score} (sedang)`;
-                resNews.style.color = '#d29922';
+                resNews.innerText = `${score} (Sedang - Perlu Pantau)`;
+                resNews.style.color = '#9a6700';
             } else {
-                resNews.innerText = `${score} (tinggi - Perlu Eskalasi)`;
-                resNews.style.color = '#f85149';
+                resNews.innerText = `${score} (Tinggi - Wajib Eskalasi DPJP)`;
+                resNews.style.color = '#cf222e';
             }
         }
 
@@ -575,17 +851,46 @@
         }
 
         function simulasiScan() {
-            alert("📷 Membuka Kamera Scanner Gelang Pasien...\n\nPasien terdeteksi: Tn. A (RM 00123)");
+            alert(`📷 Membuka Kamera Scanner Gelang Pasien...\n\nPasien terdeteksi: ${currentPatientName}`);
         }
 
         function eskalasiDPJP() {
-            alert("🚨 Notifikasi Eskalasi Terkirim ke DPJP Dr. Sp.PD via WhatsApp / System!");
+            alert(`🚨 Notifikasi Eskalasi Pasien (${currentPatientName}) Terkirim ke DPJP Dr. Sp.PD via WhatsApp / System!`);
         }
 
         function selesaiProcess() {
-            alert("✅ Pendokumentasian Vital Sign Berhasil Disimpan ke Sistem SiPerawat!");
-            switchTab(1);
+            document.getElementById('status-banner').innerText = "✓ Tersimpan & Terkunci di Rekam Medis (EHR)";
+            alert(`✅ Pendokumentasian Vital Sign Pasien ${currentPatientName} Berhasil Dikonfirmasi & Disimpan!`);
         }
+
+        function openCorrectionModal() {
+            document.getElementById('modal-koreksi').classList.remove('hidden');
+        }
+
+        function closeCorrectionModal() {
+            document.getElementById('modal-koreksi').classList.add('hidden');
+        }
+
+        function submitCorrection() {
+            const reason = document.getElementById('reason-text').value;
+            if (!reason.trim()) {
+                alert("Mohon isi alasan koreksi terlebih dahulu!");
+                return;
+            }
+
+            const now = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('correction-log').classList.remove('hidden');
+            document.getElementById('log-text').innerText = `${reason} (Pukul ${now})`;
+
+            closeCorrectionModal();
+            alert("⚠️ Status data diubah ke Koreksi. Silakan perbaiki nilai pada Layar 2 (Input Vital Signs).");
+            
+            switchTab(2);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            calculateNEWS();
+        });
 
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 900) {
