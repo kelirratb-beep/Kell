@@ -36,7 +36,7 @@
             color: #636c76;
         }
 
-        /* Navigasi Tab Mobile Dibuat Lebih Besar */
+        /* Navigasi Tab Mobile */
         .tab-container {
             display: flex;
             gap: 6px;
@@ -106,7 +106,7 @@
             text-align: center;
         }
 
-        /* Scanner Box Dibuat Besar & Empuk */
+        /* Scanner Box */
         .scanner-box {
             border: 2px dashed #0969da;
             background-color: #f0f7ff;
@@ -130,6 +130,15 @@
         .scanner-box p {
             font-size: 0.8rem;
             color: #57606a;
+        }
+
+        /* Video Scanner Camera Stream */
+        #camera-preview {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            background-color: #000;
         }
 
         /* Input Custom */
@@ -328,9 +337,7 @@
             color: #1a7f37;
         }
 
-        /* ======================================================== */
-        /* TOMBOL-TOMBOL UTAMA DIBUAT BESAR UNTUK LAYAR HP (UI/UX)  */
-        /* ======================================================== */
+        /* Tombol-Tombol UI Mobile */
         .btn-green {
             width: 100%;
             min-height: 52px;
@@ -344,7 +351,6 @@
             cursor: pointer;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: background-color 0.2s;
         }
 
         .btn-green:active {
@@ -362,7 +368,6 @@
             font-size: 0.9rem;
             cursor: pointer;
             flex: 1;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .btn-gray {
@@ -389,7 +394,6 @@
             font-size: 0.9rem;
             cursor: pointer;
             width: 100%;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         /* Result Panel Details */
@@ -530,9 +534,19 @@
         <div class="panel step-panel" id="panel1">
             <div class="panel-header">1. Identifikasi Pasien</div>
 
-            <div class="scanner-box" onclick="simulasiScan()">
+            <!-- Tombol Scanner Kamera -->
+            <div class="scanner-box" id="scanner-box" onclick="startCamera()">
                 <h3>📷 SCAN GELANG PASIEN</h3>
-                <p>Arahkan kamera / pemindai barcode</p>
+                <p>Ketuk di sini untuk membuka kamera HP</p>
+            </div>
+
+            <!-- Tampilan Kamera saat Aktif -->
+            <div id="camera-container" class="hidden" style="display: flex; flex-direction: column; gap: 8px;">
+                <video id="camera-preview" autoplay playsinline></video>
+                <div style="display: flex; gap: 8px;">
+                    <button class="btn-green" style="min-height: 44px; font-size: 0.85rem;" onclick="simulateScanDetect()">📸 Deteksi Gelang (Aulia)</button>
+                    <button class="btn-gray" style="min-height: 44px; font-size: 0.85rem;" onclick="stopCamera()">❌ Tutup Kamera</button>
+                </div>
             </div>
 
             <input type="text" id="search-patient" class="input-search" placeholder="🔍 Cari nama (Aulia, Amel, Gloo, dll)..." oninput="filterPatients()">
@@ -702,6 +716,7 @@
 
     <script>
         let currentPatientName = 'Aulia';
+        let mediaStream = null;
 
         function switchTab(tabNumber) {
             if (window.innerWidth < 900) {
@@ -730,6 +745,45 @@
             document.getElementById('active-patient-text').innerText = headerText;
             document.getElementById('active-patient-sub').innerText = subText;
             document.getElementById('confirm-patient-text').innerText = headerText;
+        }
+
+        /* FUNGSI MEMBUKA KAMERA HP OTOMATIS */
+        async function startCamera() {
+            try {
+                const constraints = {
+                    video: { facingMode: { exact: "environment" } } // Gunakan Kamera Belakang HP
+                };
+                try {
+                    mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
+                } catch(e) {
+                    // Fallback jika kamera belakang tidak ditemukan/laptop
+                    mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
+                }
+
+                const video = document.getElementById('camera-preview');
+                video.srcObject = mediaStream;
+
+                document.getElementById('scanner-box').classList.add('hidden');
+                document.getElementById('camera-container').classList.remove('hidden');
+            } catch (err) {
+                alert("📷 Akses kamera tidak diizinkan atau tidak tersedia di perangkat ini.");
+            }
+        }
+
+        function stopCamera() {
+            if (mediaStream) {
+                mediaStream.getTracks().forEach(track => track.stop());
+                mediaStream = null;
+            }
+            document.getElementById('camera-container').classList.add('hidden');
+            document.getElementById('scanner-box').classList.remove('hidden');
+        }
+
+        function simulateScanDetect() {
+            alert(`✅ Barcode Gelang Terdeteksi!\n\nPasien: Aulia (RM 00121)`);
+            selectPatient('Aulia', '21 th', 'RM 00121', 'Penisilin', 'Merah');
+            stopCamera();
+            switchTab(2);
         }
 
         function filterPatients() {
@@ -848,10 +902,6 @@
         function saveAndProceed() {
             calculateNEWS();
             switchTab(3);
-        }
-
-        function simulasiScan() {
-            alert(`📷 Membuka Kamera Scanner Gelang Pasien...\n\nPasien terdeteksi: ${currentPatientName}`);
         }
 
         function eskalasiDPJP() {
