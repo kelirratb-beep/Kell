@@ -19,20 +19,40 @@
             padding-bottom: 40px;
         }
 
+        /* Header dengan Jam Aktif di Kiri Atas */
         header {
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 16px;
-            padding-bottom: 8px;
+            padding-bottom: 10px;
             border-bottom: 1px solid #d0d7de;
         }
 
-        header h1 {
-            font-size: 1.35rem;
+        .live-clock-badge {
+            background-color: #0969da;
+            color: #ffffff;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 6px 10px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 1px 3px rgba(9, 105, 218, 0.2);
+        }
+
+        .header-title-container {
+            text-align: right;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.25rem;
             color: #0969da;
         }
 
-        header p {
-            font-size: 0.85rem;
+        .header-title-container p {
+            font-size: 0.8rem;
             color: #636c76;
         }
 
@@ -158,7 +178,7 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            max-height: 220px;
+            max-height: 230px;
             overflow-y: auto;
             border: 1px solid #e1e4e8;
             border-radius: 8px;
@@ -200,9 +220,10 @@
         }
 
         .patient-info {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: #57606a;
-            margin-top: 2px;
+            margin-top: 3px;
+            line-height: 1.3;
         }
 
         /* Banner Pasien Aktif */
@@ -212,6 +233,7 @@
             border-radius: 8px;
             padding: 12px;
             text-align: center;
+            position: relative;
         }
 
         .banner-title {
@@ -223,7 +245,19 @@
         .banner-subtitle {
             font-size: 0.8rem;
             color: #cf222e;
-            margin-top: 2px;
+            margin-top: 3px;
+        }
+
+        .btn-change-patient {
+            margin-top: 8px;
+            background-color: #ffffff;
+            border: 1px solid #d0d7de;
+            color: #0969da;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            cursor: pointer;
         }
 
         /* Menghilangkan Panah Bawaan Browser pada Input Number */
@@ -337,7 +371,7 @@
             color: #1a7f37;
         }
 
-        /* Tombol-Tombol UI Mobile */
+        /* Tombol Mobile UI */
         .btn-green {
             width: 100%;
             min-height: 52px;
@@ -406,6 +440,17 @@
             flex-direction: column;
             gap: 10px;
             font-size: 0.88rem;
+        }
+
+        .time-header {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #0969da;
+            background-color: #ddf4ff;
+            padding: 6px 10px;
+            border-radius: 6px;
+            text-align: center;
+            margin-bottom: 2px;
         }
 
         .result-row {
@@ -517,9 +562,15 @@
 </head>
 <body>
 
+    <!-- Header dengan Jam Aktif di Kiri Atas -->
     <header>
-        <h1>SiPerawat - IGD</h1>
-        <p>Pendokumentasian Vital Sign & Eskalasi Pasien</p>
+        <div class="live-clock-badge">
+            🕒 <span id="header-live-clock">00:00:00 WITA</span>
+        </div>
+        <div class="header-title-container">
+            <h1>SiPerawat - IGD</h1>
+            <p>Pendokumentasian Vital Sign & Eskalasi</p>
+        </div>
     </header>
 
     <!-- Navigation Tab untuk Tampilan HP -->
@@ -549,40 +600,40 @@
                 </div>
             </div>
 
-            <input type="text" id="search-patient" class="input-search" placeholder="🔍 Cari nama (Aulia, Amel, Gloo, dll)..." oninput="filterPatients()">
+            <input type="text" id="search-patient" class="input-search" placeholder="🔍 Cari No. RM / Nama / Tanggal Lahir..." oninput="filterPatients()">
 
             <div>
-                <p style="font-size: 0.8rem; color: #57606a; margin-bottom: 6px; font-weight: 600;">Pasien IGD (Pilih / Gulir kebawah):</p>
+                <p style="font-size: 0.8rem; color: #57606a; margin-bottom: 6px; font-weight: 600;">Daftar Pasien IGD (No. RM &amp; Tgl Lahir):</p>
                 
                 <div class="patient-list" id="patient-list-container">
-                    <div class="patient-card red selected" id="patient-Aulia" onclick="selectPatient('Aulia', '21 th', 'RM 00121', 'Penisilin', 'Merah')">
+                    <div class="patient-card red selected" id="patient-Aulia" onclick="selectPatient('Aulia', '14-08-2005', '21 th', 'RM 00121', 'Penisilin', 'Merah')">
                         <div class="patient-name">• Aulia (21 th) - Merah</div>
-                        <div class="patient-info">RM 00121 - Alergi: Penisilin</div>
+                        <div class="patient-info">No. RM: 00121 | Tgl Lahir: 14-08-2005<br>Alergi: Penisilin</div>
                     </div>
 
-                    <div class="patient-card red" id="patient-Amel" onclick="selectPatient('Amel', '20 th', 'RM 00122', 'Tidak ada', 'Merah')">
+                    <div class="patient-card red" id="patient-Amel" onclick="selectPatient('Amel', '03-11-2005', '20 th', 'RM 00122', 'Tidak ada', 'Merah')">
                         <div class="patient-name">• Amel (20 th) - Merah</div>
-                        <div class="patient-info">RM 00122 - Alergi: Tidak ada</div>
+                        <div class="patient-info">No. RM: 00122 | Tgl Lahir: 03-11-2005<br>Alergi: Tidak ada</div>
                     </div>
 
-                    <div class="patient-card yellow" id="patient-Gloo" onclick="selectPatient('Gloo', '22 th', 'RM 00123', 'Seftriakson', 'Kuning')">
+                    <div class="patient-card yellow" id="patient-Gloo" onclick="selectPatient('Gloo', '22-01-2004', '22 th', 'RM 00123', 'Seftriakson', 'Kuning')">
                         <div class="patient-name">• Gloo (22 th) - Kuning</div>
-                        <div class="patient-info">RM 00123 - Alergi: Seftriakson</div>
+                        <div class="patient-info">No. RM: 00123 | Tgl Lahir: 22-01-2004<br>Alergi: Seftriakson</div>
                     </div>
 
-                    <div class="patient-card yellow" id="patient-Mili" onclick="selectPatient('Mili', '19 th', 'RM 00124', 'Tidak ada', 'Kuning')">
+                    <div class="patient-card yellow" id="patient-Mili" onclick="selectPatient('Mili', '18-06-2007', '19 th', 'RM 00124', 'Tidak ada', 'Kuning')">
                         <div class="patient-name">• Mili (19 th) - Kuning</div>
-                        <div class="patient-info">RM 00124 - Alergi: Tidak ada</div>
+                        <div class="patient-info">No. RM: 00124 | Tgl Lahir: 18-06-2007<br>Alergi: Tidak ada</div>
                     </div>
 
-                    <div class="patient-card green" id="patient-Nina" onclick="selectPatient('Nina', '20 th', 'RM 00125', 'Povidone Iodine', 'Hijau')">
+                    <div class="patient-card green" id="patient-Nina" onclick="selectPatient('Nina', '09-09-2006', '20 th', 'RM 00125', 'Povidone Iodine', 'Hijau')">
                         <div class="patient-name">• Nina (20 th) - Hijau</div>
-                        <div class="patient-info">RM 00125 - Alergi: Povidone Iodine</div>
+                        <div class="patient-info">No. RM: 00125 | Tgl Lahir: 09-09-2006<br>Alergi: Povidone Iodine</div>
                     </div>
 
-                    <div class="patient-card green" id="patient-Ekell" onclick="selectPatient('Ekell', '21 th', 'RM 00126', 'Tidak ada', 'Hijau')">
+                    <div class="patient-card green" id="patient-Ekell" onclick="selectPatient('Ekell', '20-08-2005', '21 th', 'RM 00126', 'Tidak ada', 'Hijau')">
                         <div class="patient-name">• Ekell (21 th) - Hijau</div>
-                        <div class="patient-info">RM 00126 - Alergi: Tidak ada</div>
+                        <div class="patient-info">No. RM: 00126 | Tgl Lahir: 20-08-2005<br>Alergi: Tidak ada</div>
                     </div>
                 </div>
             </div>
@@ -595,8 +646,9 @@
             <div class="panel-header">2. Input Vital Signs</div>
 
             <div class="active-patient-banner">
-                <div class="banner-title" id="active-patient-text">Aulia • 21 th • RM 00121</div>
-                <div class="banner-subtitle" id="active-patient-sub">ALERGI: Penisilin • Triase Merah (selalu tampil)</div>
+                <div class="banner-title" id="active-patient-text">Aulia • Tgl Lahir: 14-08-2005 (21 th) • RM 00121</div>
+                <div class="banner-subtitle" id="active-patient-sub">ALERGI: Penisilin • Triase Merah</div>
+                <button class="btn-change-patient" onclick="switchTab(1)">🔄 Salah Pasien? Pilih Ulang</button>
             </div>
 
             <p style="font-size: 0.85rem; font-weight: bold; color: #1f2328;">Tekanan Darah (mmHg)</p>
@@ -604,35 +656,35 @@
             <div class="bp-input-container">
                 <div class="bp-box">
                     <label for="input-sistolik">Sistolik</label>
-                    <input type="number" id="input-sistolik" value="120" placeholder="120" oninput="calculateNEWS()">
+                    <input type="number" id="input-sistolik" value="120" placeholder="Opsional" oninput="calculateNEWS()">
                 </div>
 
                 <span style="font-weight: bold; font-size: 1.6rem; color: #57606a; margin-top: 18px;">/</span>
 
                 <div class="bp-box">
                     <label for="input-diastolik">Diastolik</label>
-                    <input type="number" id="input-diastolik" value="80" placeholder="80" oninput="calculateNEWS()">
+                    <input type="number" id="input-diastolik" value="80" placeholder="Opsional" oninput="calculateNEWS()">
                 </div>
             </div>
 
-            <p style="font-size: 0.75rem; color: #57606a;">Terakhir: 118/76 (14.05)</p>
+            <p style="font-size: 0.75rem; color: #57606a;" id="last-record-time">Terakhir: 118/76 (WITA)</p>
 
             <div class="vital-grid">
                 <div class="vital-field">
                     <label for="input-nadi">Nadi (x/m)</label>
-                    <input type="number" id="input-nadi" value="88" oninput="calculateNEWS()">
+                    <input type="number" id="input-nadi" value="88" placeholder="-" oninput="calculateNEWS()">
                 </div>
                 <div class="vital-field">
                     <label for="input-rr">RR (x/m)</label>
-                    <input type="number" id="input-rr" value="20" oninput="calculateNEWS()">
+                    <input type="number" id="input-rr" value="20" placeholder="-" oninput="calculateNEWS()">
                 </div>
                 <div class="vital-field">
                     <label for="input-spo2">SpO₂ (%)</label>
-                    <input type="number" id="input-spo2" value="96" oninput="calculateNEWS()">
+                    <input type="number" id="input-spo2" value="96" placeholder="-" oninput="calculateNEWS()">
                 </div>
                 <div class="vital-field">
                     <label for="input-suhu">Suhu (°C)</label>
-                    <input type="number" id="input-suhu" step="0.1" value="37.1" oninput="calculateNEWS()">
+                    <input type="number" id="input-suhu" step="0.1" value="37.1" placeholder="-" oninput="calculateNEWS()">
                 </div>
             </div>
 
@@ -649,32 +701,37 @@
             <div class="panel-header">3. Konfirmasi Hasil</div>
 
             <div class="active-patient-banner">
-                <div class="banner-title" id="confirm-patient-text">Aulia • 21 th • RM 00121</div>
+                <div class="banner-title" id="confirm-patient-text">Aulia • Tgl Lahir: 14-08-2005 (21 th) • RM 00121</div>
                 <div style="font-size: 0.8rem; color: #57606a; margin-top: 2px;">Pastikan data ini untuk pasien yang benar</div>
+                <button class="btn-change-patient" onclick="switchTab(1)">🔄 Ganti Pasien</button>
             </div>
 
             <div class="result-box">
-                <div class="result-row">
+                <div class="time-header" id="result-timestamp">
+                    🕒 Waktu Penginputan: -
+                </div>
+
+                <div class="result-row" id="row-td">
                     <span>Tekanan Darah: <strong id="res-td-val" style="color: #1f2328;">120/80 mmHg</strong></span>
                     <span id="badge-td" class="val-badge val-normal">✓ Normal</span>
                 </div>
-                <div class="result-row">
+                <div class="result-row" id="row-nadi">
                     <span>Nadi: <strong id="res-nadi-val">88 x/mnt</strong></span>
                     <span id="badge-nadi" class="val-badge val-normal">✓ Normal</span>
                 </div>
-                <div class="result-row">
+                <div class="result-row" id="row-rr">
                     <span>Laju Napas (RR): <strong id="res-rr-val">20 x/mnt</strong></span>
                     <span id="badge-rr" class="val-badge val-normal">✓ Normal</span>
                 </div>
-                <div class="result-row">
+                <div class="result-row" id="row-spo2">
                     <span>Saturasi Oksigen (SpO₂): <strong id="res-spo2-val">96 %</strong></span>
                     <span id="badge-spo2" class="val-badge val-normal">✓ Normal</span>
                 </div>
-                <div class="result-row">
+                <div class="result-row" id="row-suhu">
                     <span>Suhu Tubuh: <strong id="res-suhu-val">37.1 °C</strong></span>
                     <span id="badge-suhu" class="val-badge val-normal">✓ Normal</span>
                 </div>
-                <div class="score-box">
+                <div class="score-box" id="row-news">
                     <span>Skor NEWS Total:</span>
                     <span id="res-news" style="color: #1f883d;">0 (Normal / Aman)</span>
                 </div>
@@ -718,6 +775,32 @@
         let currentPatientName = 'Aulia';
         let mediaStream = null;
 
+        // Fungsi Waktu Aktif Real-time
+        function startLiveClock() {
+            function updateClock() {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                const clockString = `${hours}:${minutes}:${seconds} WITA`;
+                
+                const clockEl = document.getElementById('header-live-clock');
+                if (clockEl) {
+                    clockEl.innerText = clockString;
+                }
+            }
+            updateClock();
+            setInterval(updateClock, 1000); // Berjalan detik demi detik
+        }
+
+        function getCurrentFormattedTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            return `${hours}:${minutes}:${seconds} WITA`;
+        }
+
         function switchTab(tabNumber) {
             if (window.innerWidth < 900) {
                 document.querySelectorAll('.step-panel').forEach(panel => panel.classList.add('hidden'));
@@ -730,7 +813,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function selectPatient(name, age, rm, alergi, triase) {
+        function selectPatient(name, dob, age, rm, alergi, triase) {
             currentPatientName = name;
             
             document.querySelectorAll('.patient-card').forEach(c => c.classList.remove('selected'));
@@ -739,24 +822,22 @@
                 selectedCard.classList.add('selected');
             }
 
-            const headerText = `${name} • ${age} • ${rm}`;
-            const subText = `ALERGI: ${alergi} • Triase ${triase} (selalu tampil)`;
+            const headerText = `${name} • Tgl Lahir: ${dob} (${age}) • ${rm}`;
+            const subText = `ALERGI: ${alergi} • Triase ${triase}`;
 
             document.getElementById('active-patient-text').innerText = headerText;
             document.getElementById('active-patient-sub').innerText = subText;
             document.getElementById('confirm-patient-text').innerText = headerText;
         }
 
-        /* FUNGSI MEMBUKA KAMERA HP OTOMATIS */
         async function startCamera() {
             try {
                 const constraints = {
-                    video: { facingMode: { exact: "environment" } } // Gunakan Kamera Belakang HP
+                    video: { facingMode: { exact: "environment" } }
                 };
                 try {
                     mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
                 } catch(e) {
-                    // Fallback jika kamera belakang tidak ditemukan/laptop
                     mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
                 }
 
@@ -781,7 +862,7 @@
 
         function simulateScanDetect() {
             alert(`✅ Barcode Gelang Terdeteksi!\n\nPasien: Aulia (RM 00121)`);
-            selectPatient('Aulia', '21 th', 'RM 00121', 'Penisilin', 'Merah');
+            selectPatient('Aulia', '14-08-2005', '21 th', 'RM 00121', 'Penisilin', 'Merah');
             stopCamera();
             switchTab(2);
         }
@@ -812,80 +893,138 @@
         }
 
         function calculateNEWS() {
-            const sistolik = parseInt(document.getElementById('input-sistolik').value) || 120;
-            const diastolik = parseInt(document.getElementById('input-diastolik').value) || 80;
-            const nadi = parseInt(document.getElementById('input-nadi').value) || 88;
-            const rr = parseInt(document.getElementById('input-rr').value) || 20;
-            const spo2 = parseInt(document.getElementById('input-spo2').value) || 96;
-            const suhu = parseFloat(document.getElementById('input-suhu').value) || 37.1;
+            const sistolikVal = document.getElementById('input-sistolik').value.trim();
+            const diastolikVal = document.getElementById('input-diastolik').value.trim();
+            const nadiVal = document.getElementById('input-nadi').value.trim();
+            const rrVal = document.getElementById('input-rr').value.trim();
+            const spo2Val = document.getElementById('input-spo2').value.trim();
+            const suhuVal = document.getElementById('input-suhu').value.trim();
 
-            document.getElementById('res-td-val').innerText = `${sistolik}/${diastolik} mmHg`;
-            document.getElementById('res-nadi-val').innerText = `${nadi} x/mnt`;
-            document.getElementById('res-rr-val').innerText = `${rr} x/mnt`;
-            document.getElementById('res-spo2-val').innerText = `${spo2} %`;
-            document.getElementById('res-suhu-val').innerText = `${suhu} °C`;
+            const currentTimeStr = getCurrentFormattedTime();
+            document.getElementById('result-timestamp').innerText = `🕒 Waktu Penginputan: ${currentTimeStr}`;
 
             let score = 0;
             let warnings = [];
+            let hasAnyInput = false;
 
-            const tdNormal = (sistolik >= 90 && sistolik <= 139) && (diastolik >= 60 && diastolik <= 89);
-            if (!tdNormal) {
-                score += (sistolik >= 140 || sistolik < 90) ? 1 : 0;
-                warnings.push(`Tekanan Darah (${sistolik}/${diastolik} mmHg)`);
-                updateBadge('badge-td', false, '✓ Normal', sistolik >= 140 ? '⚠️ Tinggi' : '⚠️ Rendah');
+            // 1. Evaluasi Tekanan Darah
+            const rowTd = document.getElementById('row-td');
+            if (sistolikVal !== '' || diastolikVal !== '') {
+                hasAnyInput = true;
+                rowTd.classList.remove('hidden');
+                const sistolik = parseInt(sistolikVal) || 0;
+                const diastolik = parseInt(diastolikVal) || 0;
+                document.getElementById('res-td-val').innerText = `${sistolik}/${diastolik} mmHg`;
+
+                const tdNormal = (sistolik >= 90 && sistolik <= 139) && (diastolik >= 60 && diastolik <= 89);
+                if (!tdNormal) {
+                    score += (sistolik >= 140 || sistolik < 90) ? 1 : 0;
+                    warnings.push(`Tekanan Darah (${sistolik}/${diastolik} mmHg)`);
+                    updateBadge('badge-td', false, '✓ Normal', sistolik >= 140 ? '⚠️ Tinggi' : '⚠️ Rendah');
+                } else {
+                    updateBadge('badge-td', true, '✓ Normal', '');
+                }
             } else {
-                updateBadge('badge-td', true, '✓ Normal', '');
+                rowTd.classList.add('hidden');
             }
 
-            const nadiNormal = (nadi >= 60 && nadi <= 100);
-            if (!nadiNormal) {
-                score += 1;
-                warnings.push(`Nadi (${nadi}x/m)`);
-                updateBadge('badge-nadi', false, '✓ Normal', nadi > 100 ? '⚠️ Takikardia' : '⚠️ Bradikardia');
+            // 2. Evaluasi Nadi
+            const rowNadi = document.getElementById('row-nadi');
+            if (nadiVal !== '') {
+                hasAnyInput = true;
+                rowNadi.classList.remove('hidden');
+                const nadi = parseInt(nadiVal) || 0;
+                document.getElementById('res-nadi-val').innerText = `${nadi} x/mnt`;
+
+                const nadiNormal = (nadi >= 60 && nadi <= 100);
+                if (!nadiNormal) {
+                    score += 1;
+                    warnings.push(`Nadi (${nadi}x/m)`);
+                    updateBadge('badge-nadi', false, '✓ Normal', nadi > 100 ? '⚠️ Takikardia' : '⚠️ Bradikardia');
+                } else {
+                    updateBadge('badge-nadi', true, '✓ Normal', '');
+                }
             } else {
-                updateBadge('badge-nadi', true, '✓ Normal', '');
+                rowNadi.classList.add('hidden');
             }
 
-            const rrNormal = (rr >= 12 && rr <= 20);
-            if (!rrNormal) {
-                score += 2;
-                warnings.push(`Napas RR (${rr}x/m)`);
-                updateBadge('badge-rr', false, '✓ Normal', rr > 20 ? '⚠️ Takipnea' : '⚠️ Bradipnea');
+            // 3. Evaluasi RR
+            const rowRr = document.getElementById('row-rr');
+            if (rrVal !== '') {
+                hasAnyInput = true;
+                rowRr.classList.remove('hidden');
+                const rr = parseInt(rrVal) || 0;
+                document.getElementById('res-rr-val').innerText = `${rr} x/mnt`;
+
+                const rrNormal = (rr >= 12 && rr <= 20);
+                if (!rrNormal) {
+                    score += 2;
+                    warnings.push(`Napas RR (${rr}x/m)`);
+                    updateBadge('badge-rr', false, '✓ Normal', rr > 20 ? '⚠️ Takipnea' : '⚠️ Bradipnea');
+                } else {
+                    updateBadge('badge-rr', true, '✓ Normal', '');
+                }
             } else {
-                updateBadge('badge-rr', true, '✓ Normal', '');
+                rowRr.classList.add('hidden');
             }
 
-            const spo2Normal = (spo2 >= 95);
-            if (!spo2Normal) {
-                score += 2;
-                warnings.push(`SpO₂ (${spo2}%)`);
-                updateBadge('badge-spo2', false, '✓ Normal', '⚠️ Hipoksia');
+            // 4. Evaluasi SpO2
+            const rowSpo2 = document.getElementById('row-spo2');
+            if (spo2Val !== '') {
+                hasAnyInput = true;
+                rowSpo2.classList.remove('hidden');
+                const spo2 = parseInt(spo2Val) || 0;
+                document.getElementById('res-spo2-val').innerText = `${spo2} %`;
+
+                const spo2Normal = (spo2 >= 95);
+                if (!spo2Normal) {
+                    score += 2;
+                    warnings.push(`SpO₂ (${spo2}%)`);
+                    updateBadge('badge-spo2', false, '✓ Normal', '⚠️ Hipoksia');
+                } else {
+                    updateBadge('badge-spo2', true, '✓ Normal', '');
+                }
             } else {
-                updateBadge('badge-spo2', true, '✓ Normal', '');
+                rowSpo2.classList.add('hidden');
             }
 
-            const suhuNormal = (suhu >= 36.5 && suhu <= 37.5);
-            if (!suhuNormal) {
-                score += 1;
-                warnings.push(`Suhu (${suhu}°C)`);
-                updateBadge('badge-suhu', false, '✓ Normal', suhu > 37.5 ? '⚠️ Demam' : '⚠️ Hipotermia');
+            // 5. Evaluasi Suhu
+            const rowSuhu = document.getElementById('row-suhu');
+            if (suhuVal !== '') {
+                hasAnyInput = true;
+                rowSuhu.classList.remove('hidden');
+                const suhu = parseFloat(suhuVal) || 0;
+                document.getElementById('res-suhu-val').innerText = `${suhu} °C`;
+
+                const suhuNormal = (suhu >= 36.5 && suhu <= 37.5);
+                if (!suhuNormal) {
+                    score += 1;
+                    warnings.push(`Suhu (${suhu}°C)`);
+                    updateBadge('badge-suhu', false, '✓ Normal', suhu > 37.5 ? '⚠️ Demam' : '⚠️ Hipotermia');
+                } else {
+                    updateBadge('badge-suhu', true, '✓ Normal', '');
+                }
             } else {
-                updateBadge('badge-suhu', true, '✓ Normal', '');
+                rowSuhu.classList.add('hidden');
             }
 
+            // Alert Box status
             const alertBox = document.getElementById('clinical-alert');
             const alertMsg = document.getElementById('alert-msg');
 
-            if (warnings.length > 0) {
+            if (!hasAnyInput) {
+                alertBox.classList.add('hidden');
+            } else if (warnings.length > 0) {
                 alertMsg.innerText = `⚠️ Klinis Tidak Normal: ${warnings.join(', ')} — Perlu perhatian khusus!`;
                 alertBox.className = 'alert-box';
                 alertBox.classList.remove('hidden');
             } else {
-                alertMsg.innerText = `✅ Semua Vital Sign Pasien Dalam Batas Normal (Aman)`;
+                alertMsg.innerText = `✅ Vital Sign Terinput Dalam Batas Normal (Aman)`;
                 alertBox.className = 'alert-box success-alert';
                 alertBox.classList.remove('hidden');
             }
 
+            // Skor NEWS
             const resNews = document.getElementById('res-news');
             if (score === 0) {
                 resNews.innerText = `${score} (Normal / Aman)`;
@@ -905,12 +1044,14 @@
         }
 
         function eskalasiDPJP() {
-            alert(`🚨 Notifikasi Eskalasi Pasien (${currentPatientName}) Terkirim ke DPJP Dr. Sp.PD via WhatsApp / System!`);
+            const timeStr = getCurrentFormattedTime();
+            alert(`🚨 Notifikasi Eskalasi Pasien (${currentPatientName}) Terkirim ke DPJP Dr. Sp.PD via WhatsApp / System pada jam ${timeStr}!`);
         }
 
         function selesaiProcess() {
-            document.getElementById('status-banner').innerText = "✓ Tersimpan & Terkunci di Rekam Medis (EHR)";
-            alert(`✅ Pendokumentasian Vital Sign Pasien ${currentPatientName} Berhasil Dikonfirmasi & Disimpan!`);
+            const timeStr = getCurrentFormattedTime();
+            document.getElementById('status-banner').innerText = `✓ Tersimpan & Terkunci di Rekam Medis (EHR) pada ${timeStr}`;
+            alert(`✅ Pendokumentasian Vital Sign Pasien ${currentPatientName} Berhasil Dikonfirmasi & Disimpan jam ${timeStr}!`);
         }
 
         function openCorrectionModal() {
@@ -928,17 +1069,18 @@
                 return;
             }
 
-            const now = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+            const timeStr = getCurrentFormattedTime();
             document.getElementById('correction-log').classList.remove('hidden');
-            document.getElementById('log-text').innerText = `${reason} (Pukul ${now})`;
+            document.getElementById('log-text').innerText = `${reason} (Dikoreksi pada Jam: ${timeStr})`;
 
             closeCorrectionModal();
-            alert("⚠️ Status data diubah ke Koreksi. Silakan perbaiki nilai pada Layar 2 (Input Vital Signs).");
+            alert(`⚠️ Status data diubah ke Koreksi pada jam ${timeStr}. Silakan perbaiki nilai pada Layar 2.`);
             
             switchTab(2);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            startLiveClock();
             calculateNEWS();
         });
 
